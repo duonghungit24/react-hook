@@ -1,20 +1,24 @@
 import { useState } from 'react';
 
 function App() {
-  const cost = [1000 , 2000, 3000, 4000];
-  const [price , setPrice] = useState(() => {
-   const total = cost.reduce((number, value) => number + value); //sử dụng trong call back của useSate sẽ không bị re render nhiều lần  , vì chỉ lấy biến khởi tao
-    return total;
-  }) 
-  const handlePrice = () => {
-    setPrice( prevPrice => prevPrice + 10) ; //sử dụng call back trong setPrice,lấy giá trị price trc cộng với 10 và set thành price hiện tại
-    setPrice( prevPrice => prevPrice + 10) ; //giá trị tiếp theo sẽ được cập nhật của setPrice trc 
-    setPrice( prevPrice => prevPrice + 10) ;
+  const [infor, setInfor] = useState({
+    name:'hung',
+    age: '19',
+    address:'ha dong'
+  })
+  const handleInfor = () => {
+    // setInfor({
+    //   girlfriend: 'no'   //nếu click thì nó sẽ gán giá trị mới chứ k thêm vào infor,
+    // })
+    setInfor({
+      ...infor,          //cách khắc phục dùng toán tử es6 spread or prevent
+      girlfriend:'no'
+    })
   }
   return (
     <div className="App">
-      <h1>{price}</h1>
-      <button onClick={handlePrice}>click</button>
+      <h1>{JSON.stringify(infor)}</h1>
+      <button onClick={handleInfor}>update</button>
     </div>
   );
 }
