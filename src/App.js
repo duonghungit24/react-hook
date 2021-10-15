@@ -1,23 +1,37 @@
 import { useState } from 'react';
 
-const gifts = [
-  'CPU I9',
-  'CART RTX 3060 TI',
-  'RAM 32G RGB'
+const courses = [
+  {
+    id:1,
+    name:'javascript'
+  },
+  {
+    id:2,
+    name:'react-native',
+  },
+  {
+    id:3,
+    name:'react'
+  }
 ]
 function App() {
-  const [name, setName] = useState('');
- const handleChange = () => {
-      setName('duong van hung');
- }
- console.log(name)
+  const [checked, setChecked] = useState();
+  const handleSubmit = () => {
+      console.log(checked)
+  }
   return (
     <div className="App">
-      <input 
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-      />
-      <button onClick={handleChange}>Change</button>
+      {courses.map((course) => (
+        <div key={course.id}>
+            <input 
+              checked = {checked === course.id}
+              type ='radio'
+              onChange={() => setChecked(course.id)}
+            />
+            {course.name}
+        </div>
+      ))}
+      <button onClick={handleSubmit} >submit</button>
     </div>
   );
 }
