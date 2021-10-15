@@ -1,24 +1,20 @@
 import { useState } from 'react';
 
+const gifts = [
+  'CPU I9',
+  'CART RTX 3060 TI',
+  'RAM 32G RGB'
+]
 function App() {
-  const [infor, setInfor] = useState({
-    name:'hung',
-    age: '19',
-    address:'ha dong'
-  })
-  const handleInfor = () => {
-    // setInfor({
-    //   girlfriend: 'no'   //nếu click thì nó sẽ gán giá trị mới chứ k thêm vào infor,
-    // })
-    setInfor({
-      ...infor,          //cách khắc phục dùng toán tử es6 spread or prevent
-      girlfriend:'no'
-    })
-  }
+ const [gift, setGift] = useState();
+ const handleGift  = () => {
+      const index = Math.floor(Math.random() * gifts.length);
+      setGift(gifts[index]);
+ }
   return (
     <div className="App">
-      <h1>{JSON.stringify(infor)}</h1>
-      <button onClick={handleInfor}>update</button>
+      <h1>{gift || 'chưa có phần thưởng'}</h1>
+      <button onClick={handleGift}>lấy thưởng</button>
     </div>
   );
 }
