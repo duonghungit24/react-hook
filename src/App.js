@@ -6,15 +6,18 @@ const gifts = [
   'RAM 32G RGB'
 ]
 function App() {
- const [gift, setGift] = useState();
- const handleGift  = () => {
-      const index = Math.floor(Math.random() * gifts.length);
-      setGift(gifts[index]);
+  const [name, setName] = useState('');
+ const handleChange = () => {
+      setName('duong van hung');
  }
+ console.log(name)
   return (
     <div className="App">
-      <h1>{gift || 'chưa có phần thưởng'}</h1>
-      <button onClick={handleGift}>lấy thưởng</button>
+      <input 
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+      />
+      <button onClick={handleChange}>Change</button>
     </div>
   );
 }
